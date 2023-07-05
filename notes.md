@@ -26,6 +26,24 @@ create a two-way binding on a form input element or component
 
 It is just a shortcut for `v-bind:value` and `v-on:input`
 
+### v-if
+
+just like an `if` statement in js. The html will only be rendered if the expression in `v-if` is equal to `true`
+
+this does not 'hide' the element, it **detaches** or **attaches** the element from the DOM
+
+### v-else
+
+same idea, to work correctly it needs to be used immediatly after `v-if`.
+
+### v-show
+
+works similar to `v-if`, the difference that `v-show` sets `display: none` to the element. Only use this if the element is often changing it's visibility, otherwise use `v-if`
+
+### v-for
+
+loop through an array
+
 ## Event modifiers
 
 add mofification for event with adding a `.` (dot) after an event name. I.E. `v-on:submit.prevent`
