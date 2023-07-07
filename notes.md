@@ -79,3 +79,26 @@ While computed properties should be used to calculate the value of a property ba
 - Not used directly in template
 - Allows you to run any code in reaction to some changed data (e.g. send Https request etc.)
 - User for any non-data update you want to make
+
+## Vue's "magic"
+
+Vue's reactivity is achieved using JS built-in proxies. It "detects" the changes made to a data property even after it was interpreted and calculated
+
+Vue updates the DOM using **Virtual DOM** instead of **Browser DOM**. Virtual DOM is stored in memory and uses JS. When Vue detects changes (Proxies), it compares the new virtual dom with the old one and updates the browser dom accordingly only in the places where it is needed
+
+### Vue Instance Lifecycle
+
+createApp({})
+beforeCreate()
+created()
+_Compile template_
+beforeMount()
+mounted()
+
+Mounted Vue Instance --> Data Changed
+beforeUpdate()
+updated()
+
+Mounted Vue Instance --> Instance Unmounted
+beforeUnmount()
+unmounted()
