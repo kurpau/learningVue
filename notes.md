@@ -102,3 +102,17 @@ updated()
 Mounted Vue Instance --> Instance Unmounted
 beforeUnmount()
 unmounted()
+
+## Vue components
+
+Vue components are created on vue app object. `Vue.createApp().component(identifier, {})`.
+
+A component is basically a **custom html element**.
+
+The first argument is _identifier_, in other words, an html tag to be used. _They should always be created with a '-' in the name_. To avoid clashing with official HTML elements.
+
+Second argument is an object, just like in the create Vue app. Essentialy components is just another Vue App that belongs to another app. They're like _mini apps_...
+
+**From Docs**:
+
+> A Vue component needs to be "registered" so that Vue knows where to locate its implementation when it is encountered in a template. There are two ways to register components: global and local
