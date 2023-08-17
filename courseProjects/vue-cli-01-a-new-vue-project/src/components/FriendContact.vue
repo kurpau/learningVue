@@ -9,13 +9,14 @@
       <li><strong>Phone: </strong>{{ phoneNumber }}</li>
       <li><strong>Email: </strong>{{ emailAddress }}</li>
     </ul>
+    <button @click="$emit('delete', id)">Delete</button>
   </li>
 </template>
 
 <script>
 export default {
   props: ["id", "name", "phoneNumber", "emailAddress", "isFavourite"],
-  emits: ["toggle-favourite"],
+  emits: ["toggle-favourite", "delete"],
   data() {
     return {
       detailsAreVisible: false,
@@ -26,6 +27,7 @@ export default {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
     toggleFavourite() {
+      console.log(this);
       this.$emit("toggle-favourite", this.id);
     },
   },
