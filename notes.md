@@ -125,3 +125,6 @@ Slots can be used to pass markup inside custom component's tags.
 They can also be named
 
 ### Scoped Slots
+
+You can pass variables via slot's props which will be received by slot's name and `='objectName'` then accessed `objectName.var1; objectName.var2`
+
