@@ -118,3 +118,10 @@ Second argument is an object, just like in the create Vue app. Essentialy compon
 > A Vue component needs to be "registered" so that Vue knows where to locate its implementation when it is encountered in a template. There are two ways to register components: global and local
 
 Components build **parent-child** relations and use **unidirectional** data flows for communications. If you want to pass data to a _sibling_/_neighbour_ component you should create a parent component of them and store data there. **There's is not other way!**
+
+## Slots
+
+Slots can be used to pass markup inside custom component's tags.
+They can also be named
+
+### Scoped Slots
