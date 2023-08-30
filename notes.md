@@ -119,6 +119,18 @@ Second argument is an object, just like in the create Vue app. Essentialy compon
 
 Components build **parent-child** relations and use **unidirectional** data flows for communications. If you want to pass data to a _sibling_/_neighbour_ component you should create a parent component of them and store data there. **There's is not other way!**
 
+### Dynamic components
+
+There is a built in vue tag called `<component is=""></component>` which requires an `is=""` prop which takes component's name and can be bound to a variable - becoming _dynamic_. That mean we don't have to write lots of `v-if` statements for rendering components - less code.
+
+### Keeping dynamic components alive
+
+Vue destroys dynamic components on switch, therefore there is another wrapper built-in component called `<keep-alive></keep-alive>`. Basically component caching
+
+### Teleporting components
+
+Components can be placed inside another component and teleported elsewhere in html using built-in vue `<teleport to=""></teleport>` wrapper tag which requires `to="_css-selector_"` to be teleported to
+
 ## Slots
 
 Slots can be used to pass markup inside custom component's tags.
