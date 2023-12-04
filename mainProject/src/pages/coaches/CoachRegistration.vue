@@ -1,1 +1,1 @@
-<template>NOPE</template>
+<template>REGISTER</template>
