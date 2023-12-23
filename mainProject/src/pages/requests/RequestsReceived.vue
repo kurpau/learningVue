@@ -1,7 +1,7 @@
 <template>
   <div>
-    <base-dialog :show="!!error" title="Error!" @close="handleError">
-      <p>{{ error }}</p>
+    <base-dialog :show="!!error" title="ERROR!" @close="handleError"
+      ><p>{{ error }}</p>
     </base-dialog>
     <section>
       <base-card>
@@ -51,10 +51,10 @@ export default {
     handleError() {
       this.error = null;
     },
-    loadRequests() {
+    async loadRequests() {
       this.isLoading = true;
       try {
-        this.$store.dispatch('requests/fetchRequests');
+        await this.$store.dispatch('requests/fetchRequests');
       } catch (error) {
         this.error = error.message || 'Something failed';
       }
