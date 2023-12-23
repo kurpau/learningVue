@@ -26,7 +26,11 @@ export default {
 
     context.commit('registerCoach', { ...coachData, id: userId });
   },
-  async loadCoaches(context) {
+  async loadCoaches(context, payload) {
+    if (!payload.forceRefresh && !context.getters.shouldUpdate) {
+      return;
+    }
+
     const response = await fetch(
       `https://coach-app-6f60c-default-rtdb.europe-west1.firebasedatabase.app/coaches.json`
     );
@@ -40,6 +44,7 @@ export default {
 
     for (const key in responseData) {
       const coach = {
+        id: key,
         firstName: responseData[key].firstName,
         lastName: responseData[key].lastName,
         description: responseData[key].description,
@@ -50,5 +55,6 @@ export default {
     }
 
     context.commit('setCoaches', coaches);
+    context.commit('setFetchTimestamp');
   },
 };
