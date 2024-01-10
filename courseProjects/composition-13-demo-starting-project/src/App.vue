@@ -5,29 +5,19 @@
   </main>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue';
 import USER_DATA from './dummy-data.js';
 
 import UserList from './components/users/UserList.vue';
 import ProjectsList from './components/projects/ProjectsList.vue';
 
-export default {
-  components: {
-    UserList,
-    ProjectsList,
-  },
-  data() {
-    return {
-      selectedUser: null,
-      activeUsers: USER_DATA,
-    };
-  },
-  methods: {
-    selectUser(uid) {
-      this.selectedUser = this.activeUsers.find((usr) => usr.id === uid);
-    },
-  },
-};
+const selectedUser = ref(null);
+const activeUsers = USER_DATA;
+
+function selectUser(uid) {
+  selectedUser.value = activeUsers.find((usr) => usr.id === uid);
+}
 </script>
 
 <style>
@@ -65,3 +55,4 @@ button.selected {
   color: white;
 }
 </style>
+
