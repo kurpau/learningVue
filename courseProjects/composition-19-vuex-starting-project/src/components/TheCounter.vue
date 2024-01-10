@@ -2,12 +2,14 @@
   <h2>{{ counter }}</h2>
 </template>
 
-<script>
-export default {
-  setup() {
-    const counter = 0;
+<script setup>
+import { useStore } from 'vuex';
+import { computed } from 'vue';
 
-    return { counter };
-  },
-};
+const store = useStore();
+
+const counter = computed(function () {
+  return store.getters.counter;
+});
 </script>
+
