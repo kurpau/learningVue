@@ -1,7 +1,10 @@
 <script setup>
-import Timer from "./components/Timer.vue";
+import durationTimer from "./components/durationTimer.vue";
+import countdownTimer from "./components/countdownTimer.vue";
 </script>
 
 <template>
-  <Timer />
+  <duration-timer />
+  <br />
+  <countdown-timer />
 </template>

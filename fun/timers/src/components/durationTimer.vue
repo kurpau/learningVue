@@ -1,15 +1,22 @@
 <template>
-  <label for="elapsedProgress">Time elapsed: {{ elapsedTime }}</label>
-  <progress id="elapsedProgress" :value="progress"></progress>
-  <button @click="reset">Reset</button>
-  <button @click="toggleTimer">
-    {{ timerRunning ? "Stop" : "Start" }}
-  </button>
-  <br />
-  <h3>Pick timer duration:</h3>
-  <label for="timerRange">Value between 0 and 30</label>
-  <input id="timerRange" type="range" min="1" max="10000" v-model="duration" />
-  {{ (duration / 1000).toFixed(1) }}s
+  <h2>Stopwatch</h2>
+  <div>
+    <label for="elapsedProgress">Time elapsed: </label>
+    <progress id="elapsedProgress" :value="progress"></progress>
+  </div>
+  {{ elapsedTime }}
+  <div>
+    <label for="timerRange">Duration: </label>
+    <input id="timerRange" type="range" min="1000" max="10000" v-model="duration" />
+    {{ (duration / 1000).toFixed(1) }}s
+  </div>
+
+  <div>
+    <button v-if="elapsed >= duration" @click="reset">Reset</button>
+    <button v-else @click="toggleTimer">
+      {{ timerRunning ? "Stop" : "Start" }}
+    </button>
+  </div>
 </template>
 
 <script setup>
@@ -27,11 +34,10 @@ const progress = computed(() => {
 
 function toggleTimer() {
   if (!timerRunning.value) {
-    console.log(timerRunning.value);
     timerRunning.value = true;
-    console.log(timerRunning.value);
-  }
-  if (timerRunning.value) {
+    lastTime = performance.now() - elapsed.value;
+    update();
+  } else {
     timerRunning.value = false;
     cancelAnimationFrame(handle);
   }
@@ -41,8 +47,9 @@ function update() {
   elapsed.value = performance.now() - lastTime;
   if (elapsed.value >= duration.value) {
     cancelAnimationFrame(handle);
+  } else {
+    handle = requestAnimationFrame(update);
   }
-  handle = requestAnimationFrame(update);
 }
 
 const elapsedTime = computed(() => {
